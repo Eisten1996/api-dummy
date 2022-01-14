@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.bmatic.com/xml/cita" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.bmatic.com/xml/cita" targetNamespace="http://www.bmatic.com/xml/cita">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.bmatic.com/xml/cita">
+
+    <xs:element name="CitaDetailsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cod" type="xs:string"/>
+                <xs:element name="numPiso" type="xs:string"/>
+                <xs:element name="maxCitas" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CitaDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Citas" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CitaDetailsRequest">
+    <wsdl:part element="tns:CitaDetailsRequest" name="CitaDetailsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CitaDetailsResponse">
+    <wsdl:part element="tns:CitaDetailsResponse" name="CitaDetailsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CitaDetailsPort">
+    <wsdl:operation name="CitaDetails">
+      <wsdl:input message="tns:CitaDetailsRequest" name="CitaDetailsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:CitaDetailsResponse" name="CitaDetailsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CitaDetailsPortSoap11" type="tns:CitaDetailsPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CitaDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CitaDetailsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CitaDetailsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CitaDetailsPortService">
+    <wsdl:port binding="tns:CitaDetailsPortSoap11" name="CitaDetailsPortSoap11">
+      <soap:address location="http://localhost:8080/service/cita-details"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
